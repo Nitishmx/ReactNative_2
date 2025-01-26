@@ -551,12 +551,14 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Leads from './Leads'
 import MoneyTransfer from './MoneyTransfer'
+import Transfer from './Transfer'
 
 const index = () => {
   return (
     <View>
         {/* <Leads/> */}
-        <MoneyTransfer/>
+        {/* <MoneyTransfer/> */}
+        <Transfer/>
     </View>
   )
 }
