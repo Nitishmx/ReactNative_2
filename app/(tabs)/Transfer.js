@@ -13,6 +13,9 @@ import { StatusBar } from "expo-status-bar";
 
 const Transfer = () => {
   const [data, setData] = useState(false);
+  const [account,setAccount]=useState("")
+  const [ifsc,setIfsc]=useState("")
+  const [amount,setAmount]=useState("")
   function ModalHandler() {
     setData(true);
   }
@@ -20,19 +23,21 @@ const Transfer = () => {
     <View>
       <Modal transparent={true} visible={data} animationType="fade">
         <View style={styles.modalstyle}>
-          <Text style={{fontSize:20,color:"white"}}>Sucessful transfer</Text>
-          <Pressable onPress={()=>setData(false)}>
-          <Text style={styles.modalButton}>Close</Text>
+       <View style={{gap:10,marginTop:20}}>
+       <TextInput placeholder="Account Number" style={styles.inputfield} value={account} />
+        <TextInput placeholder="IFSC" style={styles.inputfield} value={ifsc} />
+        <TextInput placeholder="Amount" style={styles.inputfield} value={amount} />
+        <Button title="Close" onPress={()=>setData(false)}/>
 
-          </Pressable>
+       </View>
         </View>
       </Modal>
       <View style={styles.main}>
         <StatusBar backgroundColor="red" />
         <View style={styles.container}>
-          <TextInput placeholder="Account Number" style={styles.inputfield} />
+          <TextInput placeholder="Account Number" style={styles.inputfield} value={account} onChangeText={(item)=>setAccount(item)}/>
           <TextInput placeholder="Bank Name" style={styles.inputfield} />
-          <TextInput placeholder="IFSC" style={styles.inputfield} />
+          <TextInput placeholder="IFSC" style={styles.inputfield} value={ifsc} onChangeText={(item)=>setIfsc(item)}/>
           <View style={styles.inputVerify}>
             <TextInput
               placeholder="Beneficiary Name"
@@ -49,7 +54,7 @@ const Transfer = () => {
               Verify
             </Text>
           </View>
-          <TextInput placeholder="Amount" style={styles.inputfield} />
+          <TextInput placeholder="Amount" style={styles.inputfield} value={amount} onChangeText={(item)=>setAmount(item)}/>
           <View style={styles.NeftImps}>
             <Text style={styles.imps}>IMPS</Text>
             <Text style={styles.imps}>NEFT</Text>
@@ -155,14 +160,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 2,
   },
   modalstyle:{
-    backgroundColor:"red",
-    alignItems:"center",
-    justifyContent:"center",
-    width:300,
-    margin:"auto",
+    backgroundColor:"white",
+    width:"100%",
     borderRadius:10,
-    height:400,
-    gap:40
+    gap:20,
+    flex:1,
+    // marginTop:20,
+    padding:10
+  
+  
   },
   modalButton:{
     padding: 14,
